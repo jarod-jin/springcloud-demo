@@ -1,0 +1,44 @@
+server:
+  port: 8761
+  max-threads: 2000
+  max-connections: 2000
+
+eureka:
+  instance:
+    hostname: localhost
+    appname: eureka
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+
+spring:
+  security:
+    basic:
+      enabled: true
+    user:
+      name: admin          # 用户名
+      password: 123456    # 密码
+
+users:
+  admin:
+    name: admin
+    password: admin
+    roles: ADMIN,PC,APIUSER
+  pc:
+    name: pc
+    password: 123456
+    roles: PCSERVER
+  app:
+    name: app
+    password: 123456
+    roles: app
+  apiuser:
+    name: apiuser
+    password: 123456
+    roles: APIUSER
+  zuul:
+    name: zuul
+    password: 123456
+    roles: ZUUL

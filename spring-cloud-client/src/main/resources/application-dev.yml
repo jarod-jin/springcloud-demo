@@ -1,0 +1,33 @@
+spring:
+  application:
+    name: spc-dev
+    context-path: /spclient
+  datasource:
+    url: jdbc:mysql://localhost:3306/demo-dev?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC
+    username: root
+    password: 123456
+  jpa:
+    properties:
+      hibernate:
+        default_catalog: demo-dev
+
+eureka:
+  instance:
+    hostname: localhost
+    instance-id: ${spring.application.name}
+    lease-expiration-duration-in-seconds: 15 #服务刷新时间配置，每隔这个时间会主动心跳一次 #默认30s
+    lease-renewal-interval-in-seconds: 5 #eureka client刷新本地缓存时间 #默认30s
+    prefer-ip-address: true #关闭自我保护
+  client:
+    serviceUrl:
+      defaultZone: http://pc:123456@localhost:8761/eureka/
+    enabled: true
+    register-with-eureka: true
+    fetch-registry: true
+
+server:
+  port: 8090
+
+
+
+
